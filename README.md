@@ -1,6 +1,10 @@
 Dotfiles for umbriel & noctalia
 
 ```
+git clone https://github.com/r3ppep/dots3.0
+```
+
+```
 cd dots3.0
 ```
 
