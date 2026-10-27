@@ -1,8 +1,19 @@
 [[window_rule]]
-opacity = 0.98
+opacity = 0.90
 blur = true
 # blur_optimized = true
 default_focused = true
+
+# No Blur in Codium
+[[window_rule]]
+match.app_id = "codium"
+default_scrolling_extent = 1.0
+opacity = 1.0
+
+[[window_rule]]
+match.app_id = "(librewolf|helium)"
+opacity = 1.0
+default_scrolling_extent = 1.0
 
 [[layer_rule]]
 match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
