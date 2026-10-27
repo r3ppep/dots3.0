@@ -7,7 +7,6 @@ layout = "de"
 [input.mouse]
 accel_profile = "flat"
 sensitivity = 0.0
-scroll_wheel_step = 60
 
 [input.tablet]
 enabled = false
