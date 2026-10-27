@@ -1,0 +1,162 @@
+[bar.default]
+background_opacity = 0.76999998278915882
+capsule = true
+capsule_radius = 15
+capsule_thickness = 0.86999998427927494
+center = [ "media" ]
+end = [
+    "tray",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "control-center",
+    "session",
+    "clock"
+]
+font_family = "Maple Mono"
+font_weight = 600
+start = [ "launcher", "workspaces", "screenshot", "cpu", "ram" ]
+thickness = 30
+
+[calendar]
+
+[control_center]
+width = 600
+
+    [control_center.calendar]
+    show_week_numbers = true
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+    [[control_center.shortcuts]]
+    type = "wallpaper"
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = false
+    timeout = 600.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 7200.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 300.0
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-2" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1258.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1258.0
+    output = "DP-3"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[shell]
+avatar_path = "/home/pepper/Pictures/il_1080xN.6453954482_q062.webp"
+font_family = "Maple Mono"
+polkit_agent = true
+
+    [shell.panel]
+    control_center_placement = "floating"
+
+    [shell.screenshot]
+    directory = "/home/pepper/Pictures/Screenshots"
+
+[theme]
+builtin = "Catppuccin"
+
+    [theme.templates]
+    builtin_ids = [ "gtk3", "gtk4" ]
+
+[wallpaper]
+directory = "/home/pepper/Pictures/Wallpaper"
+
+    [wallpaper.default]
+    path = "/home/pepper/Pictures/Wallpaper/forest.png"
+
+    [wallpaper.last]
+    path = "/home/pepper/Pictures/Wallpaper/forest.png"
+
+    [wallpaper.monitors.DP-2]
+    path = "/home/pepper/Pictures/Wallpaper/forest.png"
+
+    [wallpaper.monitors.DP-3]
+    path = "/home/pepper/Pictures/Wallpaper/forest.png"
