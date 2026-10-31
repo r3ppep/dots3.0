@@ -12,7 +12,7 @@
 "Mod+Shift+S" = "spawn noctalia msg screenshot-fullscreen"
 
 "Mod+Ctrl+S" = "spawn noctalia msg settings-toggle"
-"Mod+Space" = "spawn noctalia msg panel-toggle launcher"
+"Mod" = "spawn noctalia msg panel-toggle launcher"
 "Mod+Shift+Escape" = "spawn noctalia msg panel-toggle session"
 "Mod+Shift+C" = "spawn noctalia msg panel-toggle control-center"
 "Mod+Shift+V" = "spawn noctalia msg panel-toggle clipboard"
@@ -85,7 +85,7 @@
 "Mod+Shift+5" = "window-move-to-workspace 5"
 
 # Scratchpad
-"Mod+Shift+Space" = { action = "window-move-to-scratchpad", repeat = false }
-"Shift+Space" = "scratchpad-toggle"
+"Mod+Tab" = { action = "window-move-to-scratchpad", repeat = false }
+"Mod+Space" = "scratchpad-toggle"
 "Mod+Ctrl+Space" = { action = "window-restore-from-scratchpad", repeat = false }
-"Mod+Tab" = "scratchpad-focus-next"
+"Mod+Tab+Space" = "scratchpad-focus-next"

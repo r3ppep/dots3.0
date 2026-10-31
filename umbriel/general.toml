@@ -1,11 +1,12 @@
 [general]
-autostart = ["noctalia --daemon"]
 
+autostart = ["noctalia --daemon"]
 xwayland = true
 show_cheatsheet = true
 focus_on_activate = true
-honor_restored_maximize = false
 xwayland_native_resolution = true
+honor_restored_maximize = false
+
 
 [environment]
 # QT_QPA_PLATFORM = "wayland"

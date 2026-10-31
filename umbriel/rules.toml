@@ -1,8 +1,12 @@
 [[window_rule]]
 opacity = 0.90
 blur = true
-# blur_optimized = true
+blur_optimized = true
 default_focused = true
+
+[[window_rule]]
+match.is_alone = true
+default_maximize = true
 
 # No Blur in Codium
 [[window_rule]]
@@ -10,6 +14,7 @@ match.app_id = "codium"
 default_scrolling_extent = 1.0
 opacity = 1.0
 
+#No Blur in Browser
 [[window_rule]]
 match.app_id = "(librewolf|helium)"
 opacity = 1.0
