@@ -88,4 +88,4 @@
 "Mod+Tab" = { action = "window-move-to-scratchpad", repeat = false }
 "Mod+Space" = "scratchpad-toggle"
 "Mod+Ctrl+Space" = { action = "window-restore-from-scratchpad", repeat = false }
-"Mod+Tab+Space" = "scratchpad-focus-next"
+# "Mod+Ctrl" = "scratchpad-focus-next"
