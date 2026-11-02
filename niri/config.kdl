@@ -3,17 +3,18 @@ spawn-sh-at-startup "noctalia"
 
 // display
 
-- output "DP-2" {
+output "DP-2" {
     mode "2560x1440@143.980" // Set resolution and refresh rate
     scale 1 // No scaling (use 2 for HiDPI)
 }
-- output "DP-3" {
+output "DP-3" {
     mode "2560x1440@164.802" // Set resolution and refresh rate
 }
 
 // input
 
 input {
+    mod-key "Super"
     keyboard {
         xkb {
         layout "de"
@@ -37,7 +38,6 @@ input {
         // scroll-button 273
         // scroll-button-lock
         // left-handed
-        // middle-emulation
     }
 
 
@@ -49,121 +49,83 @@ input {
 
 binds {
 
-    // ────────────── Keybindings ──────────────
-    // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+    Mod+Shift+Escape            { show-hotkey-overlay; }
 
-    // ─── noctalia-shell keybinds ───
-    // https://docs.noctalia.dev/getting-started/keybinds/
+    //Apps//
+    Mod+Return          hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
+    // MOD                 hotkey-overlay-title="Open App Launcher" { spawn "noctalia msg panel-toggle launcher";}
+    // MOD+B               hotkey-overlay-title="Open Browser" { spawn "brave"; }
 
-    // ─── Applications ───
-    MOD+RETURN                          repeat=false hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
-    MOD                                 hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
-    MOD+ESCAPE                          { quit; }
-    MOD+SHIFT+ESCAPE                    { spawn-sh "noctalia msg panel-toggle session"; }
-    MOD+CTRL+S                          { spawn-sh "noctalia msg settings-toggle"; }
-    MOD+SHIFT+C                         { spawn-sh "noctalia msg panel-toggle control-center"; }
-    MOD+SHIFT+V                         { spawn-sh "noctalia msg panel-toggle clipboard"; }
-    MOD+SHIFT+N                         { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
-    MOD+CTRL+R                          { spawn-sh "noctalia msg plugin noctalia/screen_recorder:service all toggle portal"; }
-    MOD+SHIFT+R                         { spawn-sh "noctalia msg plugin noctalia/screen_recorder:service all toggle focused"; }
-    // MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
-    // MOD+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
 
-    // Please choose your own file manager.
-    MOD+V                               repeat=false hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
+    // File Manager //
+    MOD+V               hotkey-overlay-title="File Manager" { spawn "nautilus"; }
 
-    // ─── Audio Controls ───
-    XF86AUDIORAISEVOLUME                allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
-    XF86AUDIOLOWERVOLUME                allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
-    XF86AUDIOMUTE                       allow-when-locked=true repeat=false { spawn-sh "noctalia msg volume-mute"; }
-    XF86AUDIOPLAY                       allow-when-locked=true repeat=false { spawn-sh "noctalia msg media toggle"; }
-    XF86AUDIONEXT                       allow-when-locked=true { spawn-sh "noctalia msg media next"; }
-    XF86AUDIOPREV                       allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
-    XF86MONBRIGHTNESSUP                 allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
-    XF86MONBRIGHTNESSDOWN               allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
-    XF86AUDIOMICMUTE                    allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    // Audio Controls //
 
-    // ─── Screenshots and Noctalia ───
-    MOD+S                               { spawn-sh "noctalia msg screenshot-region"; }
-    MOD+SHIFT+S                         { spawn-sh "noctalia msg screenshot-fullscreen"; }
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn "noctalia msg volume-up"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn "noctalia msg volume-down"; }
+    XF86AudioMute                       allow-when-locked=true { spawn "noctalia msg volume-mute"; }
+    // XF86AudioMicMute                    allow-when-locked=true { spawn "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioNext                       allow-when-locked=true { spawn "spawn noctalia msg media next"; }
+    XF86AudioPause                      allow-when-locked=true { spawn "spawn noctalia msg media previous"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn "playerctl play-pause"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn "playerctl previous"; }
 
-    // ─── Window Movement and Focus ───
-    MOD+Q                               repeat=false { close-window; }
+    // Window Movement //
+    MOD+Q               { close-window; }
 
-    MOD+LEFT                            { focus-column-left; }
-    MOD+RIGHT                           { focus-column-right; }
-    MOD+UP                              { focus-window-up; }
-    MOD+DOWN                            { focus-window-down; }
+    MOD+LEFT            { focus-column-left; }
+    MOD+RIGHT           { focus-column-right; }
+    MOD+UP              { focus-window-up; }
+    MOD+DOWN            { focus-window-down; }
 
-    MOD+COMMA                           { consume-or-expel-window-left; }
-    MOD+PERIOD                          { consume-or-expel-window-right; }
-    MOD+SHIFT+UP                        { move-window-up; }
-    MOD+SHIFT+DOWN                      { move-window-down; }
-    MOD+ALT+UP                          { move-window-to-workspace-previous; }
-    MOD+ALT+DOWN                        { move-window-to-workspace-next; }
+    MOD+CTRL+LEFT       { move-column-left; }
+    MOD+CTRL+RIGHT      { move-column-right; }
+    MOD+CTRL+UP         { move-window-up; }
+    MOD+CTRL+DOWN       { move-window-down; }
 
-    MOD+CTRL+LEFT                       { move-column-left; }
-    MOD+CTRL+RIGHT                      { move-column-right; }
-    MOD+CTRL+UP                         { move-window-up; }
-    MOD+CTRL+DOWN                       { move-window-down; }
+    MOD+HOME            { focus-column-first; }
+    MOD+END             { focus-column-last; }
+    MOD+CTRL+HOME       { move-column-to-first; }
+    MOD+CTRL+END        { move-column-to-last; }
 
-    //MOD+HOME                            { focus-column-first; }
-    //MOD+END                             { focus-column-last; }
-    //MOD+CTRL+HOME                       { move-column-to-first; }
-    //MOD+CTRL+END                        { move-column-to-last; }
+    MOD+SHIFT+LEFT      { focus-monitor-left; }
+    MOD+SHIFT+RIGHT     { focus-monitor-right; }
+    MOD+SHIFT+UP        { focus-monitor-up; }
+    MOD+SHIFT+DOWN      { focus-monitor-down; }
 
-    //MOD+SHIFT+LEFT                      { focus-monitor-left; }
-    //MOD+SHIFT+RIGHT                     { focus-monitor-right; }
-    //MOD+SHIFT+UP                        { focus-monitor-up; }
-    //MOD+SHIFT+DOWN                      { focus-monitor-down; }
+    MOD+SHIFT+CTRL+LEFT { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+RIGHT{ move-column-to-monitor-right; }
+    
 
-    MOD+SHIFT+CTRL+LEFT                 { move-column-to-monitor-left; }
-    MOD+SHIFT+CTRL+RIGHT                { move-column-to-monitor-right; }
-    MOD+SHIFT+CTRL+UP                   { move-column-to-monitor-up; }
-    MOD+SHIFT+CTRL+DOWN                 { move-column-to-monitor-down; }
+    // Workspace Switchting //
+    MOD+WHEELSCROLLDOWN cooldown-ms=150 { focus-workspace-down; }
+    MOD+WHEELSCROLLUP   cooldown-ms=150 { focus-workspace-up; }
+    
+    MOD+1                { focus-workspace 1; }
+    MOD+2                { focus-workspace 2; }
+    MOD+3                { focus-workspace 3; }
+    MOD+4                { focus-workspace 4; }
+    MOD+5                { focus-workspace 5; }
+    MOD+6                { focus-workspace 6; }
+    MOD+7                { focus-workspace 7; }
+    MOD+8                { focus-workspace 8; }
+    MOD+9                { focus-workspace 9; }
 
-    // ─── Workspace Switching ───
-    MOD+WHEELSCROLLDOWN                 cooldown-ms=150 { focus-workspace-previous; }
-    MOD+WHEELSCROLLUP                   cooldown-ms=150 { focus-workspace-next; }
-    MOD+CTRL+WHEELSCROLLDOWN            cooldown-ms=150 { move-column-to-workspace-down; }
-    MOD+CTRL+WHEELSCROLLUP              cooldown-ms=150 { move-column-to-workspace-up; }
+    MOD+CTRL+1          { move-column-to-workspace 1; }
+    MOD+CTRL+2          { move-column-to-workspace 2; }
+    MOD+CTRL+3          { move-column-to-workspace 3; }
+    MOD+CTRL+4          { move-column-to-workspace 4; }
+    MOD+CTRL+5          { move-column-to-workspace 5; }
+    MOD+CTRL+6          { move-column-to-workspace 6; }
+    MOD+CTRL+7          { move-column-to-workspace 7; }
+    MOD+CTRL+8          { move-column-to-workspace 8; }
+    MOD+CTRL+9          { move-column-to-workspace 9; }
 
-    MOD+SHIFT+WHEELSCROLLDOWN           { focus-column-right; }
-    MOD+SHIFT+WHEELSCROLLUP             { focus-column-left; }
-    MOD+SHIFT+RIGHT                     { move-column-right; }
-    MOD+SHIFT+LEFT                      { move-column-left; }
-
-    MOD+1                               { focus-workspace 1; }
-    MOD+2                               { focus-workspace 2; }
-    MOD+3                               { focus-workspace 3; }
-    MOD+4                               { focus-workspace 4; }
-    MOD+5                               { focus-workspace 5; }
-    MOD+6                               { focus-workspace 6; }
-    MOD+7                               { focus-workspace 7; }
-    MOD+8                               { focus-workspace 8; }
-    MOD+9                               { focus-workspace 9; }
-
-    MOD+CTRL+1                          { move-column-to-workspace 1; }
-    MOD+CTRL+2                          { move-column-to-workspace 2; }
-    MOD+CTRL+3                          { move-column-to-workspace 3; }
-    MOD+CTRL+4                          { move-column-to-workspace 4; }
-    MOD+CTRL+5                          { move-column-to-workspace 5; }
-    MOD+CTRL+6                          { move-column-to-workspace 6; }
-    MOD+CTRL+7                          { move-column-to-workspace 7; }
-    MOD+CTRL+8                          { move-column-to-workspace 8; }
-    MOD+CTRL+9                          { move-column-to-workspace 9; }
-    MOD+SHIFT+1                         { move-window-to-workspace 1; }
-    MOD+SHIFT+2                         { move-window-to-workspace 2; }
-    MOD+SHIFT+3                         { move-window-to-workspace 3; }
-    MOD+SHIFT+4                         { move-window-to-workspace 4; }
-    MOD+SHIFT+5                         { move-window-to-workspace 5; }
-
-    MOD+TAB                             repeat=false { move-window-to-workspace "scratchpad"; }
-    MOD+SPACE                           repeat=false { focus-workspace "scratchpad"; }
-    MOD+CTRL+SPACE                      repeat=false { move-window-to-workspace-previous; }
-
-    // ─── Layout Controls ───
-    MOD+R                               { expand-column-to-available-width; }
+    MOD+TAB             { focus-workspace-previous; }
+    
+    // Layout Controls //
+    MOD+CTRL+F                          { expand-column-to-available-width; }
     MOD+C                               { center-column; }
     MOD+CTRL+C                          { center-visible-columns; }
     MOD+MINUS                           { set-column-width "-10%"; }
@@ -171,24 +133,27 @@ binds {
     MOD+SHIFT+MINUS                     { set-window-height "-10%"; }
     MOD+SHIFT+EQUAL                     { set-window-height "+10%"; }
 
-    // ─── Modes ───
-    MOD+T                               repeat=false { toggle-window-floating; }
-    MOD+SHIFT+T                         repeat=false { switch-focus-between-floating-and-tiling; }
-    MOD+P                               repeat=false { set-window-pin; }
-    MOD+M                               repeat=false { maximize-column; }
-    MOD+F                               repeat=false { fullscreen-window; }
-    MOD+CTRL+F                          repeat=false { maximize-column; }
-    MOD+W                               repeat=false { toggle-column-tabbed-display; }
+    // Modes //
+    MOD+T                               { toggle-window-floating; }
+    MOD+F                               { fullscreen-window; }
+    MOD+W                               { maximize-column; }
 
-    // ─── Screenshots ───
-    CTRL+SHIFT+1                        { screenshot; }
-    CTRL+SHIFT+2                        { screenshot-screen; }
-    CTRL+SHIFT+3                        { screenshot-window; }
+    // Screenshots //
+    // MOD+S                               { spawn "noctalia msg screenshot-region" }
+    // MOD+SHIFT+F                         { screenshot-screen; }
+    // MOD+SHIFT+A                         { screenshot-window; }
 
-    // ─── Exit / Power ───
+    // Emergency Escape Key //
+    // Use this when a fullscreen app blocks your keybinds.
+    // It disables any active keyboard shortcut inhibitor, restoring control.
+    MOD+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    
+    // Exit / Power //
     CTRL+ALT+DELETE                     { quit; } // Also quits Niri
     MOD+SHIFT+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
     MOD+O                               repeat=false { toggle-overview; }
+
+
 }
 
 // layout
