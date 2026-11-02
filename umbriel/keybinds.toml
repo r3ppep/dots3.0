@@ -70,8 +70,8 @@
 "Mod+Alt+Up" = "window-move-to-workspace-previous"
 "Mod+Alt+Down" = "window-move-to-workspace-next"
 
-"Mod+Ctrl+Up" = "workspace-previous"
-"Mod+Ctrl+Down" = "workspace-next"
+"Mod+WHEELSCROLLUP" = "workspace-previous"
+"Mod+WHEELSCROLLDOWN" = "workspace-next"
 
 "Mod+1" = "workspace-switch 1"
 "Mod+2" = "workspace-switch 2"
