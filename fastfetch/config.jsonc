@@ -15,7 +15,7 @@
             "keyColor": "red"
     },
     {
-            "type": "WM",
+            "type": "wm",
             "key": "│ {icon}:",
             "keyColor": "red"
     },
@@ -58,7 +58,7 @@
             "type": "memory",
             "key": "│ 󰑭 ",
             "keyColor": "red"
-    },
+    }
 
     ]
 }
