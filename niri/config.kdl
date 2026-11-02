@@ -1,6 +1,6 @@
 // autostart
 spawn-sh-at-startup "noctalia"
-
+spawn-sh-at-startup "x
 // display
 
 output "DP-2" {
@@ -157,7 +157,7 @@ binds {
 
 
 layout {
-	gaps 10
+	gaps 5
 	center-focused-column "never"
 	always-center-single-column
 	// background-color "#191724"
@@ -175,9 +175,9 @@ layout {
 	}
 
 	focus-ring {
-		off
-		// width 3
-		// active-color "#ebbcba"
+		on
+		width 1
+		active-color "#c061cb"
 		// urgent-color "#eb6f92"
 	}
 
@@ -191,20 +191,20 @@ layout {
 
 	shadow {
 		on
-		softness 25
+		softness 20
 		spread 3
 		offset x=0 y=0
-		draw-behind-window true
+		draw-behind-window false
 		color "#00000070"
 	}
 
-	struts {
+	//struts {
 		// top 23
 		// left 23
 		// right 23
 		// bottom 23
-		bottom -6
-	}
+		//bottom -6
+	//}
 }
 
 // misc
@@ -244,11 +244,6 @@ layout {
 
 
 // rules
-
-window-rule {
-    geometry-corner-radius 15
-    clip-to-geometry true
-}
 
 //layer-rule {
 //    match namespace="^quickshell-overview$"
@@ -332,11 +327,11 @@ window-rule {
 	default-floating-position x=24 y=24 relative-to="bottom-right"
 }
 
-window-rule {
-	match is-active=false
-
-	opacity 0.87
-}
+//window-rule {
+//	match is-active=false
+//
+//	opacity 1
+//}
 
 window-rule {
 	geometry-corner-radius 12
