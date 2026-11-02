@@ -14,7 +14,6 @@ output "DP-3" {
 // input
 
 input {
-    mod-key "Super"
     keyboard {
         xkb {
         layout "de"
@@ -30,7 +29,7 @@ input {
     mouse {
         // off
         // natural-scroll
-        // accel-speed 0.2
+        accel-speed 0.0
         accel-profile "flat"
         // scroll-factor 1.0
         // scroll-factor vertical=1.0 horizontal=-2.0
@@ -52,8 +51,8 @@ binds {
     Mod+Shift+Escape            { show-hotkey-overlay; }
 
     //Apps//
-    Mod+Return          hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
-    // MOD                 hotkey-overlay-title="Open App Launcher" { spawn "noctalia msg panel-toggle launcher";}
+    Mod+Return             hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
+    MOD+space              hotkey-overlay-title="Open App Launcher" { spawn-sh "noctalia msg panel-toggle launcher";}
     // MOD+B               hotkey-overlay-title="Open Browser" { spawn "brave"; }
 
 
@@ -62,14 +61,12 @@ binds {
 
     // Audio Controls //
 
-    XF86AudioRaiseVolume                allow-when-locked=true { spawn "noctalia msg volume-up"; }
-    XF86AudioLowerVolume                allow-when-locked=true { spawn "noctalia msg volume-down"; }
-    XF86AudioMute                       allow-when-locked=true { spawn "noctalia msg volume-mute"; }
-    // XF86AudioMicMute                    allow-when-locked=true { spawn "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
-    XF86AudioNext                       allow-when-locked=true { spawn "spawn noctalia msg media next"; }
-    XF86AudioPause                      allow-when-locked=true { spawn "spawn noctalia msg media previous"; }
-    XF86AudioPlay                       allow-when-locked=true { spawn "playerctl play-pause"; }
-    XF86AudioPrev                       allow-when-locked=true { spawn "playerctl previous"; }
+    XF86AudioRaiseVolume allow-when-locked=true       { spawn "noctalia" "msg" "volume-up" "2"; }
+	XF86AudioLowerVolume allow-when-locked=true       { spawn "noctalia" "msg" "volume-down" "2"; }
+	XF86AudioMute allow-when-locked=true repeat=false { spawn "noctalia" "msg" "volume-mute"; }
+	XF86MonBrightnessUp allow-when-locked=true        {	spawn "noctalia" "msg" "brightness-up" "5%"; }
+	XF86MonBrightnessDown allow-when-locked=true      { spawn "noctalia" "msg" "brightness-down" "5%"; }
+	XF86AudioPlay allow-when-locked=true repeat=false { spawn "noctalia" "msg" "media" "toggle"; }
 
     // Window Movement //
     MOD+Q               { close-window; }
@@ -79,8 +76,8 @@ binds {
     MOD+UP              { focus-window-up; }
     MOD+DOWN            { focus-window-down; }
 
-    MOD+CTRL+LEFT       { move-column-left; }
-    MOD+CTRL+RIGHT      { move-column-right; }
+    MOD+SHIFT+LEFT       { move-column-left; }
+    MOD+SHIFT+RIGHT      { move-column-right; }
     MOD+CTRL+UP         { move-window-up; }
     MOD+CTRL+DOWN       { move-window-down; }
 
@@ -89,10 +86,10 @@ binds {
     MOD+CTRL+HOME       { move-column-to-first; }
     MOD+CTRL+END        { move-column-to-last; }
 
-    MOD+SHIFT+LEFT      { focus-monitor-left; }
-    MOD+SHIFT+RIGHT     { focus-monitor-right; }
-    MOD+SHIFT+UP        { focus-monitor-up; }
-    MOD+SHIFT+DOWN      { focus-monitor-down; }
+    // MOD+SHIFT+LEFT      { focus-monitor-left; }
+    // MOD+SHIFT+RIGHT     { focus-monitor-right; }
+    // MOD+SHIFT+UP        { focus-monitor-up; }
+    // MOD+SHIFT+DOWN      { focus-monitor-down; }
 
     MOD+SHIFT+CTRL+LEFT { move-column-to-monitor-left; }
     MOD+SHIFT+CTRL+RIGHT{ move-column-to-monitor-right; }
@@ -125,7 +122,7 @@ binds {
     MOD+TAB             { focus-workspace-previous; }
     
     // Layout Controls //
-    MOD+CTRL+F                          { expand-column-to-available-width; }
+    MOD+SHIFT+F                         { expand-column-to-available-width; }
     MOD+C                               { center-column; }
     MOD+CTRL+C                          { center-visible-columns; }
     MOD+MINUS                           { set-column-width "-10%"; }
@@ -139,7 +136,7 @@ binds {
     MOD+W                               { maximize-column; }
 
     // Screenshots //
-    // MOD+S                               { spawn "noctalia msg screenshot-region" }
+    Mod+Shift+S { screenshot show-pointer=false; }
     // MOD+SHIFT+F                         { screenshot-screen; }
     // MOD+SHIFT+A                         { screenshot-window; }
 
@@ -158,75 +155,82 @@ binds {
 
 // layout
 
+
 layout {
-    // Set gaps around windows in logical pixels.
-    gaps 7 // Gap between windows
-    center-focused-column "never" // Don’t auto-center focused column
+	gaps 10
+	center-focused-column "never"
+	always-center-single-column
+	// background-color "#191724"
+	background-color "transparent"
 
-    preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
-    }
+	preset-column-widths {
+		proportion 0.25
+		proportion 0.5
+		proportion 0.75
+		proportion 1.0
+	}
 
-    focus-ring {
-        // How many logical pixels the ring extends out from the windows.
-        
-        width 1
+	default-column-width {
+		proportion 0.5
+	}
 
-        // Colors can be set in a variety of ways:
-        // - CSS named colors: "red"
-        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
-        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+	focus-ring {
+		off
+		// width 3
+		// active-color "#ebbcba"
+		// urgent-color "#eb6f92"
+	}
 
-        // Color of the ring on the active monitor.
-        active-color "#c4a7a7ff"
+	border {
+		off
+		width 3
+		active-color "#ebbcba"
+		inactive-color "#191724"
+		urgent-color "#eb6f92"
+	}
 
-        // Color of the ring on inactive monitors.
-        //
-        // The focus ring only draws around the active window, so the only place
-        // where you can see its inactive-color is on other monitors.
-        inactive-color "#505050"
+	shadow {
+		on
+		softness 25
+		spread 3
+		offset x=0 y=0
+		draw-behind-window true
+		color "#00000070"
+	}
 
-        // You can also use gradients. They take precedence over solid colors.
-        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
-        // The angle is the same as in linear-gradient, and is optional,
-        // defaulting to 180 (top-to-bottom gradient).
-        // You can use any CSS linear-gradient tool on the web to set these up.
-        // Changing the color space is also supported, check the wiki for more info.
-        //
-        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
-
-        // You can also color the gradient relative to the entire view
-        // of the workspace, rather than relative to just the window itself.
-        // To do that, set relative-to="workspace-view".
-        //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
-    }
-
-     shadow {
-        softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
-     
-    }
-    struts {}
-    background-color "transparent"
+	struts {
+		// top 23
+		// left 23
+		// right 23
+		// bottom 23
+		bottom -6
+	}
 }
 
 // misc
 
     prefer-no-csd
-    screenshot-path null
+    screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
     environment {
-        ELECTRON_OZONE_PLATFORM_HINT "auto"
-        QT_QPA_PLATFORM "wayland"
-        QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-        XDG_SESSION_TYPE "wayland"
-        XDG_CURRENT_DESKTOP "niri"
-        QT_QPA_PLATFORMTHEME "gtk3"
+	MOZ_ENABLE_WAYLAND "1"
+	PROTON_ENABLE_WAYLAND "1"
+	OZONE_PLATFORM "wayland"
+	ELECTRON_OZONE_PLATFORM_HINT "wayland"
+
+	SDL_VIDEODRIVER "wayland"
+	SDL_VIDEO_WAYLAND_SCALE_TO_DISPLAY "1"
+	GDK_BACKEND "wayland,x11,*"
+	CLUTTER_BACKEND "wayland"
+
+		// Java
+	_JAVA_AWT_WM_NONREPARENTING "1"
+	NO_AT_BRIDGE "1"
+
+		// QT
+	QT_QPA_PLATFORM "wayland"
+	QT_QPA_PLATFORMTHEME "qt6ct"
+	QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     }
 
     debug {
@@ -250,3 +254,110 @@ window-rule {
 //    match namespace="^quickshell-overview$"
 //   place-within-backdrop true
 //}
+
+// noctalia settings
+window-rule {
+	match app-id="dev.noctalia.Noctalia"
+
+	default-column-width { proportion 0.8; }
+	default-window-height { proportion 0.9; }
+
+	open-floating true
+}
+
+// Picture-in-Picture
+window-rule {
+	match app-id="firefox|floorp|^.*zen$|chromium-browser|librewolf" title="Picture-in-Picture"
+
+	default-column-width { fixed 354; }
+	default-window-height { fixed 200; }
+
+	default-floating-position x=20 y=20 relative-to="bottom-right"
+
+	open-focused false
+
+	border { off; }
+}
+
+// default-column-width default-window-height open-floating true
+window-rule {
+	match app-id="^xdg-desktop-portal-gtk$|Electron"
+	match app-id="^.*Nautilus$" title="^Open File.*$"
+	match app-id="Electron" title="Save"
+	match title="^dialog.*$|^All Files$|^confirm.*$|^Save As.*$|^Save Image.*$|^Open Folder.*$|^File Upload.*$|^Select.*$|^Choose wallpaper.*$|^Choose an image.*$|Choose File|Save Screenshot|^Locate ISO.*$|^blob.*$|Open project|datapacks|^(.*)//account.proton.me/(.*)$|Choose photolan|^Find Java.*$|^Choose Projectless.*$"
+
+	default-column-width { proportion 0.5; }
+	default-window-height { proportion 0.5; }
+
+	open-floating true
+}
+
+// steam / games
+window-rule {
+	match app-id="steam" title="^Sign in.*$"
+
+	open-floating true
+	
+	default-floating-position x=-83 y=132 relative-to="right"
+}
+
+window-rule {
+	match app-id="steam" title="Shutdown"
+
+	open-floating true
+
+	default-floating-position x=0 y=72 relative-to="right"
+}
+
+window-rule {
+	match app-id="steam" title="^.*Dialog$"
+
+	open-floating true
+
+	default-floating-position x=290 y=53.5 relative-to="right"
+}
+
+window-rule {
+	match app-id="steam" title="Launching..."
+
+	default-floating-position x=44 y=74 relative-to="right"
+}
+
+window-rule {
+	match app-id="steam" title="Friends List"
+
+	default-column-width { proportion 0.2; }
+	default-window-height { proportion 0.5; }
+
+	default-floating-position x=24 y=24 relative-to="bottom-right"
+}
+
+window-rule {
+	match is-active=false
+
+	opacity 0.87
+}
+
+window-rule {
+	geometry-corner-radius 12
+	clip-to-geometry true
+
+	background-effect {
+		blur true
+		xray false
+	}
+}
+
+layer-rule {
+	match namespace="^noctalia-.*$"
+
+	background-effect {
+		xray false
+	}
+}
+
+layer-rule {
+	match namespace="^noctalia-backdrop"
+	place-within-backdrop true
+}
+
