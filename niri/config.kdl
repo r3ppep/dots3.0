@@ -274,19 +274,6 @@ window-rule {
 	border { off; }
 }
 
-// default-column-width default-window-height open-floating true
-window-rule {
-	match app-id="^xdg-desktop-portal-gtk$|Electron"
-	match app-id="^.*Nautilus$" title="^Open File.*$"
-	match app-id="Electron" title="Save"
-	match title="^dialog.*$|^All Files$|^confirm.*$|^Save As.*$|^Save Image.*$|^Open Folder.*$|^File Upload.*$|^Select.*$|^Choose wallpaper.*$|^Choose an image.*$|Choose File|Save Screenshot|^Locate ISO.*$|^blob.*$|Open project|datapacks|^(.*)//account.proton.me/(.*)$|Choose photolan|^Find Java.*$|^Choose Projectless.*$"
-
-	default-column-width { proportion 0.5; }
-	default-window-height { proportion 0.5; }
-
-	open-floating true
-}
-
 // steam / games
 window-rule {
 	match app-id="steam" title="^Sign in.*$"
@@ -326,6 +313,7 @@ window-rule {
 
 	default-floating-position x=24 y=24 relative-to="bottom-right"
 }
+////////////////////////////////////////////////////////////////////////////////////
 
 //window-rule {
 //	match is-active=false
@@ -336,7 +324,7 @@ window-rule {
 window-rule {
 	geometry-corner-radius 12
 	clip-to-geometry true
-
+    opacity 0.95
 	background-effect {
 		blur true
 		xray false
@@ -356,3 +344,11 @@ layer-rule {
 	place-within-backdrop true
 }
 
+window-rule {
+    match app-id="Nautilus"
+    opacity 0.95
+    background-effect {
+      blur true
+      xray true
+    }
+}
