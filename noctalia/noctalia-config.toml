@@ -1,9 +1,4 @@
 [bar.default]
-background_opacity = 0.76999998278915882
-capsule = true
-capsule_radius = 15
-capsule_thickness = 0.86999998427927494
-center = [ "media" ]
 end = [
     "tray",
     "notifications",
@@ -13,37 +8,31 @@ end = [
     "volume",
     "brightness",
     "battery",
+    "bar",
     "control-center",
-    "session",
-    "clock"
+    "session"
 ]
-font_family = "Maple Mono"
-font_weight = 600
-start = [ "launcher", "workspaces", "screenshot", "cpu", "ram" ]
-thickness = 30
+start = [ "launcher", "wallhaven", "workspaces", "cpu", "ram", "cat", "media" ]
 
 [calendar]
 
 [control_center]
-width = 600
+width = 650
 
     [control_center.calendar]
     show_week_numbers = true
 
-    [[control_center.shortcuts]]
-    type = "caffeine"
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
 
-    [[control_center.shortcuts]]
-    type = "nightlight"
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
 
-    [[control_center.shortcuts]]
-    type = "notification"
-
-    [[control_center.shortcuts]]
-    type = "power_profile"
-
-    [[control_center.shortcuts]]
-    type = "wallpaper"
+    [desktop_widgets.widget]
 
 [idle]
 behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
@@ -55,18 +44,21 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 
     [idle.behavior.lock-and-suspend]
     action = "lock_and_suspend"
-    enabled = false
+    enabled = true
     timeout = 7200.0
 
     [idle.behavior.screen-off]
     action = "screen_off"
     enabled = true
-    timeout = 300.0
+    timeout = 600.0
+
+[location]
+address = "Magdeburg"
 
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-2" ]
+widget_order = [ "lockscreen-login-box@DP-2", "lockscreen-login-box@DP-3" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -85,7 +77,7 @@ widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-2" ]
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -113,7 +105,7 @@ widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-2" ]
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -129,34 +121,107 @@ widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-2" ]
         show_unlock_hint = true
         show_weather = true
 
+[notification]
+layer = "overlay"
+monitors = [ "DP-2", "DP-3" ]
+
+[plugins]
+enabled = [ "noctalia/bongocat", "noctalia/umbriel-companion", "noctalia/wallhaven" ]
+
 [shell]
-avatar_path = "/home/pepper/Pictures/il_1080xN.6453954482_q062.webp"
-font_family = "Maple Mono"
-polkit_agent = true
+avatar_path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
+
+    [shell.launcher]
+    category_icons_only = true
+    default_view = "all"
+    pinned = [ "vivaldi-stable" ]
+    width = 650
 
     [shell.panel]
-    control_center_placement = "floating"
+    launcher_placement = "attached"
+    session_position = "top_right"
 
     [shell.screenshot]
-    directory = "/home/pepper/Pictures/Screenshots"
+    confirm_region = true
+    region_modifier = "super"
+
+    [shell.session]
+    show_shortcuts = false
+
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "2"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "3"
+        variant = "destructive"
+
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = false
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        countdown_seconds = 0.0
+        enabled = false
+        shortcut = "3"
+        variant = "default"
 
 [theme]
-builtin = "Catppuccin"
+builtin = "Ayu"
+source = "wallpaper"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4" ]
+    builtin_ids = [ "gtk3", "gtk4", "umbriel" ]
+    community_ids = [ "libreoffice", "zed" ]
 
 [wallpaper]
 directory = "/home/pepper/Pictures/Wallpaper"
+fill_mode = "stretch"
+transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/pepper/Pictures/Wallpaper/forest.png"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
 
     [wallpaper.last]
-    path = "/home/pepper/Pictures/Wallpaper/forest.png"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
 
     [wallpaper.monitors.DP-2]
-    path = "/home/pepper/Pictures/Wallpaper/forest.png"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
 
     [wallpaper.monitors.DP-3]
-    path = "/home/pepper/Pictures/Wallpaper/forest.png"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
+
+[widget.bar]
+type = "noctalia/umbriel-companion:bar"
+
+[widget.cat]
+type = "noctalia/bongocat:cat"
+
+[widget.media]
+album_art_only = true
+art_size = 17
+hide_when_idle = true
+hide_when_no_media = true
+
+[widget.network]
+show_label = false
+
+[widget.wallhaven]
+type = "noctalia/wallhaven:wallhaven"
