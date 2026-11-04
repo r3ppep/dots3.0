@@ -6,7 +6,7 @@ default_focused = true
 
 [[window_rule]]
 match.is_alone = true
-default_maximize = true
+default_maximize = false
 
 # No Blur in Codium
 [[window_rule]]
