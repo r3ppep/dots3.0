@@ -3,25 +3,22 @@ opacity = 0.90
 blur = true
 blur_optimized = true
 default_focused = true
-
-[[window_rule]]
-match.is_alone = true
 default_maximize = false
 
 # No Blur in Codium
 [[window_rule]]
 match.app_id = "codium|code|zed"
-default_scrolling_extent = 1.0
+default_scrolling_extent = 0.8
 opacity = 1.0
 
 #No Blur in Browser
 [[window_rule]]
 match.app_id = "(librewolf|helium|vivaldi)"
 opacity = 1.0
-default_scrolling_extent = 1.0
+default_scrolling_extent = 0.8
 
 [[layer_rule]]
-match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
+match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|launcehr|desktop-widget-[^\"]*)$"
 blur = true
 blur_ignore_alpha = 0.5
 blur_popups = true

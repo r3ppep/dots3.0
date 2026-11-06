@@ -1,4 +1,5 @@
 [bar.default]
+background_opacity = 0.89999997988343239
 end = [
     "tray",
     "notifications",
@@ -130,6 +131,8 @@ enabled = [ "noctalia/bongocat", "noctalia/umbriel-companion", "noctalia/wallhav
 
 [shell]
 avatar_path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
+font_family = "Adwaita Sans"
+polkit_agent = true
 
     [shell.launcher]
     category_icons_only = true
@@ -138,8 +141,10 @@ avatar_path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
     width = 650
 
     [shell.panel]
-    launcher_placement = "attached"
+    launcher_placement = "floating"
+    launcher_position = "top_center"
     session_position = "top_right"
+    transparency_mode = "glass"
 
     [shell.screenshot]
     confirm_region = true
@@ -186,6 +191,7 @@ avatar_path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
 [theme]
 builtin = "Ayu"
 source = "wallpaper"
+wallpaper_scheme = "vibrant"
 
     [theme.templates]
     builtin_ids = [ "gtk3", "gtk4", "umbriel" ]
@@ -197,16 +203,16 @@ fill_mode = "stretch"
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-2165dx.png"
 
     [wallpaper.last]
-    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-2165dx.png"
 
     [wallpaper.monitors.DP-2]
-    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-2165dx.png"
 
     [wallpaper.monitors.DP-3]
-    path = "/home/pepper/Pictures/Wallpaper/wallhaven-jerxxy.jpg"
+    path = "/home/pepper/Pictures/Wallpaper/wallhaven-2165dx.png"
 
 [widget.bar]
 type = "noctalia/umbriel-companion:bar"
