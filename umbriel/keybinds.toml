@@ -48,8 +48,8 @@
 "Mod+Shift+Up" = "window-move-up"
 "Mod+Shift+Right" = "column-move-right"
 
-#"Mod+Minus" = "window-modify-width-right:-0.1"
-#"Mod+Equal" = "window-modify-width-right:+0.1"
+"Mod+MouseForward" = "window-modify-primary-extent -0.2"
+"Mod+MouseBack" = "window-modify-primary-extent +0.2"
 #"Mod+Shift+Minus" = "window-modify-width-right:-0.5"
 #"Mod+Shift+Equal" = "window-modify-width-right:+0.5"
 
