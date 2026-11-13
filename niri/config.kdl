@@ -1,11 +1,11 @@
 // autostart
 spawn-sh-at-startup "noctalia"
-spawn-sh-at-startup "x
+
 // display
 
 output "DP-2" {
-    mode "2560x1440@143.998" // Set resolution and refresh rate
-    // scale 1 // No scaling (use 2 for HiDPI)
+    mode "2560x1440@143.980" // Set resolution and refresh rate
+    scale 1 // No scaling (use 2 for HiDPI)
 }
 output "DP-3" {
     mode "2560x1440@164.802" // Set resolution and refresh rate
@@ -40,7 +40,7 @@ input {
     }
 
 
-    focus-follows-mouse  // Focus windows and outputs automatically when moving the mouse into them.
+    //focus-follows-mouse  // Focus windows and outputs automatically when moving the mouse into them.
     workspace-auto-back-and-forth // Enable Workspace back & forth switching
 }
 
@@ -48,109 +48,112 @@ input {
 
 binds {
 
-    Mod+Shift+Escape            { show-hotkey-overlay; }
+    // Mod+Shift+Escape            { show-hotkey-overlay; }
 
-    //Apps//
-    Mod+Return             hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
-    MOD+space              hotkey-overlay-title="Open App Launcher" { spawn-sh "noctalia msg panel-toggle launcher";}
-    // MOD+B               hotkey-overlay-title="Open Browser" { spawn "brave"; }
+    // Applications and Noctalia
+    Mod+Return hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
+    Mod {
+        release { spawn-sh "noctalia msg panel-toggle launcher"; }
+    }
+    Mod+Space hotkey-overlay-title="Open App Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+V hotkey-overlay-title="File Manager" { spawn "nautilus"; }
+    Mod+Escape { quit; }
+    Mod+Shift+Escape { spawn "noctalia" "msg" "panel-toggle" "session"; }
+    Mod+Shift+C { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+Shift+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+    Mod+Shift+N { spawn "noctalia" "msg" "panel-toggle" "control-center" "notifications"; }
+    Mod+Ctrl+S { spawn "noctalia" "msg" "settings-toggle"; }
+    Mod+Ctrl+R { spawn-sh "noctalia msg plugin noctalia/screen_recorder:service all toggle portal"; }
+    Mod+Shift+R { spawn-sh "noctalia msg plugin noctalia/screen_recorder:service all toggle focused"; }
 
+    // Screenshots
+    Mod+S { spawn "noctalia" "msg" "screenshot-region"; }
+    Mod+Shift+S { spawn "noctalia" "msg" "screenshot-fullscreen"; }
 
-    // File Manager //
-    MOD+V               hotkey-overlay-title="File Manager" { spawn "nautilus"; }
+    // Media
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
+    XF86AudioMute allow-when-locked=true repeat=false { spawn "noctalia" "msg" "volume-mute"; }
+    XF86AudioPlay allow-when-locked=true repeat=false { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioNext allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
+    XF86AudioPrev allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
 
-    // Audio Controls //
+    // Window and workspace actions
+    Mod+Q repeat=false { close-window; }
+    Mod+Up { focus-window-up; }
+    Mod+Down { focus-window-down; }
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Comma { consume-or-expel-window-left; }
+    Mod+Period { consume-or-expel-window-right; }
+    Mod+Shift+Left { move-column-left; }
+    Mod+Shift+Down { move-window-down; }
+    Mod+Shift+Up { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+MouseForward { set-column-width "-20%"; }
+    Mod+MouseBack { set-column-width "+20%"; }
+    Mod+T repeat=false { toggle-window-floating; }
+    Mod+Shift+T repeat=false { switch-focus-between-floating-and-tiling; }
+    Mod+M { maximize-window-to-edges; }
+    Mod+F { fullscreen-window; }
+    Mod+Ctrl+F { maximize-column; }
+    Mod+R { switch-preset-column-width; }
+    Mod+W repeat=false { toggle-column-tabbed-display; }
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Alt+Up { move-column-to-workspace-up; }
+    Mod+Alt+Down { move-column-to-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
 
-    XF86AudioRaiseVolume allow-when-locked=true       { spawn "noctalia" "msg" "volume-up" "2"; }
-	XF86AudioLowerVolume allow-when-locked=true       { spawn "noctalia" "msg" "volume-down" "2"; }
-	XF86AudioMute allow-when-locked=true repeat=false { spawn "noctalia" "msg" "volume-mute"; }
-	XF86MonBrightnessUp allow-when-locked=true        {	spawn "noctalia" "msg" "brightness-up" "5%"; }
-	XF86MonBrightnessDown allow-when-locked=true      { spawn "noctalia" "msg" "brightness-down" "5%"; }
-	XF86AudioPlay allow-when-locked=true repeat=false { spawn "noctalia" "msg" "media" "toggle"; }
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
 
-    // Window Movement //
-    MOD+Q               { close-window; }
+    // Niri has no direct equivalents for pinned windows or scratchpad actions.
+    // Keep the existing Mod+Tab and Mod+Space behavior in their place.
+    Mod+Tab { focus-workspace-previous; }
 
-    MOD+LEFT            { focus-column-left; }
-    MOD+RIGHT           { focus-column-right; }
-    MOD+UP              { focus-window-up; }
-    MOD+DOWN            { focus-window-down; }
-
-    MOD+SHIFT+LEFT       { move-column-left; }
-    MOD+SHIFT+RIGHT      { move-column-right; }
-    MOD+CTRL+UP         { move-window-up; }
-    MOD+CTRL+DOWN       { move-window-down; }
-
-    MOD+HOME            { focus-column-first; }
-    MOD+END             { focus-column-last; }
-    MOD+CTRL+HOME       { move-column-to-first; }
-    MOD+CTRL+END        { move-column-to-last; }
-
-    // MOD+SHIFT+LEFT      { focus-monitor-left; }
-    // MOD+SHIFT+RIGHT     { focus-monitor-right; }
-    // MOD+SHIFT+UP        { focus-monitor-up; }
-    // MOD+SHIFT+DOWN      { focus-monitor-down; }
-
-    MOD+SHIFT+CTRL+LEFT { move-column-to-monitor-left; }
-    MOD+SHIFT+CTRL+RIGHT{ move-column-to-monitor-right; }
-    
-
-    // Workspace Switchting //
-    MOD+WHEELSCROLLDOWN cooldown-ms=150 { focus-workspace-down; }
-    MOD+WHEELSCROLLUP   cooldown-ms=150 { focus-workspace-up; }
-    
-    MOD+1                { focus-workspace 1; }
-    MOD+2                { focus-workspace 2; }
-    MOD+3                { focus-workspace 3; }
-    MOD+4                { focus-workspace 4; }
-    MOD+5                { focus-workspace 5; }
-    MOD+6                { focus-workspace 6; }
-    MOD+7                { focus-workspace 7; }
-    MOD+8                { focus-workspace 8; }
-    MOD+9                { focus-workspace 9; }
-
-    MOD+CTRL+1          { move-column-to-workspace 1; }
-    MOD+CTRL+2          { move-column-to-workspace 2; }
-    MOD+CTRL+3          { move-column-to-workspace 3; }
-    MOD+CTRL+4          { move-column-to-workspace 4; }
-    MOD+CTRL+5          { move-column-to-workspace 5; }
-    MOD+CTRL+6          { move-column-to-workspace 6; }
-    MOD+CTRL+7          { move-column-to-workspace 7; }
-    MOD+CTRL+8          { move-column-to-workspace 8; }
-    MOD+CTRL+9          { move-column-to-workspace 9; }
-
-    MOD+TAB             { focus-workspace-previous; }
-    
-    // Layout Controls //
-    MOD+SHIFT+F                         { expand-column-to-available-width; }
-    MOD+C                               { center-column; }
-    MOD+CTRL+C                          { center-visible-columns; }
-    MOD+MINUS                           { set-column-width "-10%"; }
-    MOD+EQUAL                           { set-column-width "+10%"; }
-    MOD+SHIFT+MINUS                     { set-window-height "-10%"; }
-    MOD+SHIFT+EQUAL                     { set-window-height "+10%"; }
-
-    // Modes //
-    MOD+T                               { toggle-window-floating; }
-    MOD+F                               { fullscreen-window; }
-    MOD+W                               { maximize-column; }
-
-    // Screenshots //
-    Mod+Shift+S { screenshot show-pointer=false; }
-    // MOD+SHIFT+F                         { screenshot-screen; }
-    // MOD+SHIFT+A                         { screenshot-window; }
-
-    // Emergency Escape Key //
-    // Use this when a fullscreen app blocks your keybinds.
-    // It disables any active keyboard shortcut inhibitor, restoring control.
-    MOD+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-    
-    // Exit / Power //
-    CTRL+ALT+DELETE                     { quit; } // Also quits Niri
-    MOD+SHIFT+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
-    MOD+O                               repeat=false { toggle-overview; }
-
-
+    // Additional existing Niri bindings
+    Mod+Ctrl+Up { move-window-up; }
+    Mod+Ctrl+Down { move-window-down; }
+    Mod+Home { focus-column-first; }
+    Mod+End { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End { move-column-to-last; }
+    Mod+Shift+Ctrl+Left { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Shift+F { expand-column-to-available-width; }
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Ctrl+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Ctrl+Alt+Delete { quit; }
+    Mod+Alt+P { power-off-monitors; }
 }
 
 // layout
@@ -207,7 +210,7 @@ layout {
 	//}
 }
 
-// misc
+// Environment and Miscellaneous Settings
 
     prefer-no-csd
     screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -250,6 +253,46 @@ layout {
 //   place-within-backdrop true
 //}
 
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//window-rule {
+//	match is-active=false
+//
+//	opacity 1
+//}
+//General Rules
+window-rule {
+	geometry-corner-radius 12
+	clip-to-geometry true
+    opacity 0.95
+	background-effect {
+		blur true
+		xray false
+	}
+}
+
+//Application Specific Rules
+window-rule {
+    match app-id="Nautilus"
+    opacity 0.95
+    background-effect {
+      blur true
+      xray true
+    }
+}
+
+window-rule {
+    match app-id="Codium"
+    opacity 1.0
+}
+
+window-rule {
+    match app-id="firefox|floorp|^.*zen$|chromium-browser|librewolf"
+    opacity 1.0
+}
+
+
 // noctalia settings
 window-rule {
 	match app-id="dev.noctalia.Noctalia"
@@ -274,63 +317,6 @@ window-rule {
 	border { off; }
 }
 
-// steam / games
-window-rule {
-	match app-id="steam" title="^Sign in.*$"
-
-	open-floating true
-	
-	default-floating-position x=-83 y=132 relative-to="right"
-}
-
-window-rule {
-	match app-id="steam" title="Shutdown"
-
-	open-floating true
-
-	default-floating-position x=0 y=72 relative-to="right"
-}
-
-window-rule {
-	match app-id="steam" title="^.*Dialog$"
-
-	open-floating true
-
-	default-floating-position x=290 y=53.5 relative-to="right"
-}
-
-window-rule {
-	match app-id="steam" title="Launching..."
-
-	default-floating-position x=44 y=74 relative-to="right"
-}
-
-window-rule {
-	match app-id="steam" title="Friends List"
-
-	default-column-width { proportion 0.2; }
-	default-window-height { proportion 0.5; }
-
-	default-floating-position x=24 y=24 relative-to="bottom-right"
-}
-////////////////////////////////////////////////////////////////////////////////////
-
-//window-rule {
-//	match is-active=false
-//
-//	opacity 1
-//}
-
-window-rule {
-	geometry-corner-radius 12
-	clip-to-geometry true
-    opacity 0.95
-	background-effect {
-		blur true
-		xray false
-	}
-}
-
 layer-rule {
 	match namespace="^noctalia-.*$"
 
@@ -342,13 +328,4 @@ layer-rule {
 layer-rule {
 	match namespace="^noctalia-backdrop"
 	place-within-backdrop true
-}
-
-window-rule {
-    match app-id="Nautilus"
-    opacity 0.95
-    background-effect {
-      blur true
-      xray true
-    }
 }
