@@ -11,5 +11,5 @@ sensitivity = 0.0
 [input.tablet]
 enabled = false
 
-[input.focus]
-follows_mouse = false
+#[input.focus]
+#follows_mouse = false

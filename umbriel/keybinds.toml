@@ -4,13 +4,12 @@
 
 "Mod+Return" = { action = "spawn kitty", repeat = false }
 "Mod+Escape" = "session-quit"
-"Mod+V" = { action = "spawn nautilus", repeat =false }
+"Mod+V" = { action = "spawn luciole", repeat =false }
 
 # Noctalia
 
 "Mod+S" = "spawn noctalia msg screenshot-region"
 "Mod+Shift+S" = "spawn noctalia msg screenshot-fullscreen"
-
 "Mod+Ctrl+S" = "spawn noctalia msg settings-toggle"
 "Mod" = "spawn noctalia msg panel-toggle launcher"
 "Mod+Shift+Escape" = "spawn noctalia msg panel-toggle session"
@@ -34,25 +33,20 @@
 # Window and workspace actions
 
 "Mod+Q" = { action = "window-close", repeat = false }
-
 "Mod+Up" = "window-focus-up"
 "Mod+Down" = "window-focus-down"
 "Mod+Left" = "window-focus-previous"
 "Mod+Right" = "window-focus-next"
-
 "Mod+Comma" = "window-consume-or-expel-left"
 "Mod+Period" = "window-consume-or-expel-right"
-
 "Mod+Shift+Left" = "column-move-left"
 "Mod+Shift+Down" = "window-move-down"
 "Mod+Shift+Up" = "window-move-up"
 "Mod+Shift+Right" = "column-move-right"
-
 "Mod+MouseForward" = "window-modify-primary-extent -0.2"
 "Mod+MouseBack" = "window-modify-primary-extent +0.2"
 #"Mod+Shift+Minus" = "window-modify-width-right:-0.5"
 #"Mod+Shift+Equal" = "window-modify-width-right:+0.5"
-
 #"Mod+Ctrl+Minus" = "window-modify-height-down:-0.05"
 #"Mod+Ctrl+Equal" = "window-modify-height-down:+0.05"
 
