@@ -39,6 +39,10 @@ input {
         // left-handed
     }
 
+    cursor {
+        xcursor-theme "Bibata"
+        xcursor-size 28
+}
 
     //focus-follows-mouse  // Focus windows and outputs automatically when moving the mouse into them.
     workspace-auto-back-and-forth // Enable Workspace back & forth switching
