@@ -217,16 +217,7 @@ layout {
     screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
     environment {
-	MOZ_ENABLE_WAYLAND "1"
-	PROTON_ENABLE_WAYLAND "1"
-	OZONE_PLATFORM "wayland"
-	ELECTRON_OZONE_PLATFORM_HINT "wayland"
-
-	SDL_VIDEODRIVER "wayland"
-	SDL_VIDEO_WAYLAND_SCALE_TO_DISPLAY "1"
-	GDK_BACKEND "wayland,x11,*"
-	CLUTTER_BACKEND "wayland"
-
+    MOZ_ENABLE_WAYLAND 1
 		// QT
 	QT_QPA_PLATFORM "wayland"
 	QT_QPA_PLATFORMTHEME "qt6ct"
@@ -281,14 +272,14 @@ window-rule {
 
 window-rule {
     match app-id="Codium|Zed"
-    opacity 1.0
-}
-
-window-rule {
     match app-id="firefox|floorp|^.*zen$|chromium-browser|librewolf"
     opacity 1.0
 }
 
+window-rule {
+  match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+  default-floating-position x=10 y=10 relative-to="bottom-right"
+}
 
 // noctalia settings
 window-rule {
