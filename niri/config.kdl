@@ -1,10 +1,10 @@
 // autostart
 spawn-sh-at-startup "noctalia"
-
+spawn-sh-at-startup "xwayland-satellite"
 // display
 
 output "DP-2" {
-    mode "2560x1440@143.980" // Set resolution and refresh rate
+    mode "2560x1440@143.972" // Set resolution and refresh rate
     scale 1 // No scaling (use 2 for HiDPI)
 }
 output "DP-3" {
@@ -29,7 +29,7 @@ input {
     mouse {
         // off
         // natural-scroll
-        accel-speed 0.0
+        // accel-speed 0.0
         accel-profile "flat"
         // scroll-factor 1.0
         // scroll-factor vertical=1.0 horizontal=-2.0
@@ -52,9 +52,6 @@ binds {
 
     // Applications and Noctalia
     Mod+Return hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
-    Mod {
-        release { spawn-sh "noctalia msg panel-toggle launcher"; }
-    }
     Mod+Space hotkey-overlay-title="Open App Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+V hotkey-overlay-title="File Manager" { spawn "nautilus"; }
     Mod+Escape { quit; }
@@ -226,10 +223,6 @@ layout {
 	GDK_BACKEND "wayland,x11,*"
 	CLUTTER_BACKEND "wayland"
 
-		// Java
-	_JAVA_AWT_WM_NONREPARENTING "1"
-	NO_AT_BRIDGE "1"
-
 		// QT
 	QT_QPA_PLATFORM "wayland"
 	QT_QPA_PLATFORMTHEME "qt6ct"
@@ -263,7 +256,7 @@ layout {
 //}
 //General Rules
 window-rule {
-	geometry-corner-radius 12
+	geometry-corner-radius 10
 	clip-to-geometry true
     opacity 0.95
 	background-effect {
@@ -283,7 +276,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Codium"
+    match app-id="Codium|Zed"
     opacity 1.0
 }
 
