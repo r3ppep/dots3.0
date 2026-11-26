@@ -39,13 +39,15 @@ input {
         // left-handed
     }
 
-    cursor {
-        xcursor-theme "Bibata"
-        xcursor-size 28
-}
+
 
     //focus-follows-mouse  // Focus windows and outputs automatically when moving the mouse into them.
     workspace-auto-back-and-forth // Enable Workspace back & forth switching
+}
+
+cursor {
+    xcursor-theme "Bibata"
+    xcursor-size 28
 }
 
 // keybinds
@@ -217,9 +219,11 @@ layout {
     screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
     environment {
-    MOZ_ENABLE_WAYLAND 1
-		// QT
-	QT_QPA_PLATFORM "wayland"
+    
+    MOZ_ENABLE_WAYLAND "1"
+    
+    // QT
+    QT_QPA_PLATFORM "wayland"
 	QT_QPA_PLATFORMTHEME "qt6ct"
 	QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     }
